@@ -1,0 +1,34 @@
+[
+  {
+    "NameRU": "Казино Тыбурция",
+    "NameEN": "Casino",
+    "DescriptionRU": "Игра, прошедшая через множество метаморфоз",
+    "DescriptionEN": "Game that has gone through many matamorphoses",
+    "Dir": "Casino/",
+    "Image": "Casino.png"
+  },
+  {
+    "NameRU": "Наш слон",
+    "NameEN": "Our elephant",
+    "DescriptionRU": "Психологический триллер о про-российском слоне",
+    "DescriptionEN": "Psychological thriller about a pro-Russian elephant",
+    "Dir": "Slon/",
+    "Image": "Slon.png"
+  },
+  {
+    "NameRU": "Flappy Duck Hunt",
+    "NameEN": "Flappy Duck Hunt",
+    "DescriptionRU": "Странная игра которая мне приснилась",
+    "DescriptionEN": "A strange game that I dreamed about",
+    "Dir": "FlappyDuckHunt/",
+    "Image": "Flappy.png"
+  },
+  {
+    "NameRU": "Мод Bible of Clavin на TBOI",
+    "NameEN": "Bible of Calvin TBOI mod",
+    "DescriptionRU": "Упоротый мод",
+    "DescriptionEN": "Strange mod",
+    "Dir": "Calvin/",
+    "Image": "Izek.png"
+  }
+]

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Games</title>
+</head>
+<body>
+	<header>
+		<h3>NosokYantarya</h3>
+		<nav>
+			<LangButton id="RU" onclick="Lang('ru')" style="background-color: white; color: black;">RU</LangButton>
+			<LangButton id="EN" onclick="Lang('en')">EN</LangButton>
+			<DropdownContainer>
+				<img src="../burger.svg" />
+				<Dropdown>
+					<a href="../index.html">
+						<ru>О себе</ru>
+						<en>About me</en>
+					</a>
+					<a href="../Projects.html">
+						<ru>Мои поделки</ru>
+						<en>My stuff</en>
+					</a>
+				</Dropdown>
+			</DropdownContainer>
+		</nav>
+	</header>
+	<Projects>
+		
+	</Projects>
+</body>
+</html>
+
+<style>
+	html[lang="ru"] en {
+		display: none;
+	}
+
+	html[lang="en"] ru {
+		display: none;
+	}
+
+	body {
+		margin: 0;
+		background-color: black;
+		color: white;
+		font-family: Consolas;
+	}
+
+    header {
+        padding: 5px;
+        border: 5px solid white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background-color: black;
+    }
+
+	nav {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 5px;
+	}
+
+	LangButton {
+		padding: 5px;
+		border: 5px solid white;
+		border-radius: 30px;
+	}
+
+	DropdownContainer {
+		position: relative;
+	}
+
+	Dropdown {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 100%;
+		right: 0%;
+		z-index: 9999;
+		background-color: black;
+		border: 5px solid white;
+		width: 100px;
+	}
+
+	Dropdown a {
+		color: white;
+		text-decoration: none;
+		padding: 5px;
+	}
+
+	DropdownContainer:hover Dropdown {
+		display: flex;
+	}
+
+
+
+	Projects {
+		width: 80%;
+		margin: auto;
+		margin-top: 20px;
+		padding: 20px;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	Project {
+		border: 5px solid white;
+		border-radius: 30px;
+
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+
+		padding: 10px;
+		margin: 10px;
+		width: 320px;
+
+		text-align: center;
+	}
+	Info {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	Info a {
+		color: white;
+		text-decoration: none;
+
+		border: 5px solid white;
+		border-radius: 30px;
+
+		padding: 10px;
+		margin: 10px;
+
+		transition: background-color 0.5s ease;
+	}
+	Info a:hover {
+		background-color: white;
+		color: black;
+	}
+	Projects img {
+		width: 300px;
+		height: 300px;
+		border-radius: 30px;
+	}
+</style>
+
+<script>
+	fetch("Games.json")
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(Projects => {
+			CreateCards(Projects);
+		})
+		.catch(error => {
+			console.error('There was a problem with the fetch operation:', error);
+		});
+
+	function CreateCards(Data) {
+		const ProjDiv = document.querySelector("Projects");
+		Data.forEach(function (item, i) {
+			const NewCard = document.createElement("Project");
+
+			const NewTitle = document.createElement("h3");
+			TitleRU = document.createElement("ru");
+			TitleRU.innerHTML = item.NameRU;
+			TitleEN = document.createElement("en");
+			TitleEN.innerHTML = item.NameEN;
+			NewTitle.appendChild(TitleRU);
+			NewTitle.appendChild(TitleEN);
+
+			const NewDescription = document.createElement("p");
+			DescriptionRU = document.createElement("ru");
+			DescriptionRU.innerHTML = item.DescriptionRU;
+			DescriptionEN = document.createElement("en");
+			DescriptionEN.innerHTML = item.DescriptionEN;
+			NewDescription.appendChild(DescriptionRU);
+			NewDescription.appendChild(DescriptionEN);
+
+			const NewLink = document.createElement("a");
+			NewLink.href = item.Dir;
+			NewLink.innerHTML = "<b><ru>Подробнее</ru><en>Read more</en></b>";
+
+			const NewInfo = document.createElement("Info");
+			NewInfo.appendChild(NewTitle);
+			NewInfo.appendChild(NewDescription);
+			NewInfo.appendChild(NewLink);
+
+			const NewImage = document.createElement("img");
+			NewImage.src = item.Image;
+
+			NewCard.appendChild(NewInfo);
+			NewCard.appendChild(NewImage);
+
+			ProjDiv.appendChild(NewCard);
+		});
+	}
+	function Lang(lang) {
+		let RU = document.getElementById("RU");
+		let EN = document.getElementById("EN");
+
+		RU.style = "";
+		EN.style = "";
+
+		if (lang == "ru") {
+			RU.style = "background-color: white; color: black;";
+		}
+		if (lang == "en") {
+			EN.style = "background-color: white; color: black;";
+		}
+
+		document.querySelector("html").lang = lang;
+	}
+</script>
