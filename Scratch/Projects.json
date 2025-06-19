@@ -1,0 +1,86 @@
+[
+	{
+		"NameRU": "Hedgehog's portal trip",
+		"NameEN": "Hedgehog's portal trip",
+		"DescriptionRU": "Это мой первый проект Scratch (по крайней мере из тех, что я делал самостоятельно). Анимация про ежа, заходящего в порталы, которая длится несколько секунд.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/392843568"
+	},
+	{
+		"NameRU": "Питомец Билайн",
+		"NameEN": "Beeline pet",
+		"DescriptionRU": "Моя сестра расплакалась, когда увидела рекламу Билайн, потому что ей захотелось такого же робота, как там. Я сделал эту игру, чтобы утешить её.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/392409359"
+	},
+	{
+		"NameRU": "Beanos Fight In Undertale",
+		"NameEN": "Beanos Fight In Undertale",
+		"DescriptionRU": "Я сделал эту игру с помощью проекта пользователя Pococikapusta. Насколько мне известно, ещё никто её не прошёл.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/392873198"
+	},
+	{
+		"NameRU": "Игра собирай деньги",
+		"NameEN": "",
+		"DescriptionRU": "Очень простая игра, в которой нужно передвигать кота по экрану и собирать деньги, одновременно с этим убегая от какого-то чела.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/392897568"
+	},
+	{
+		"NameRU": "Спасение Гобо",
+		"NameEN": "",
+		"DescriptionRU": "Я сделал эту игру для какого-то конкурса, и выиграл. Если это правда был лучший проект на конкурсе, то я даже боюсь представить, как выглядят все остальные.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/398627816"
+	},
+	{
+		"NameRU": "Из жизни Темми",
+		"NameEN": "",
+		"DescriptionRU": "У меня случился неожиданный приступ вдохновения, и я сделал это. Одним из вдохновителей этой анимации был ютубер John Brain (здесь есть прямые отсылки на его анимации по Undertale).",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/466836298"
+	},
+	{
+		"NameRU": "Из жизни Темми 2",
+		"NameEN": "",
+		"DescriptionRU": "Я сделал эту анимацию только потому что в первой части открытый финал. Фигово получилось.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/467958306"
+	},
+	{
+		"NameRU": "Оформить вкид",
+		"NameEN": "",
+		"DescriptionRU": "Я помню, что я как-то провинился перед своим другом, и он заставил меня сделать этот проект. Здесь вам надо ввести всю необходимую информацию чтобы получить документ об оформлении вкида.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/479073592"
+	},
+	{
+		"NameRU": "Шашлык у Ашота remix",
+		"NameEN": "",
+		"DescriptionRU": "Мой друг сделал простую игру, где надо купить шашлык у Ашота, и я её немного усовершенствовал.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/496025347"
+	},
+	{
+		"NameRU": "Bobux generator",
+		"NameEN": "Bobux generator",
+		"DescriptionRU": "Это игра, где надо нажимать на кнопку, чтобы получать деньги, чтобы улучшать генератор денег и получать ещё больше денег. Вдохновлена серией видео с Ютуба, где Грю пытается получить робаксы.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/493632071"
+	},
+	{
+		"NameRU": "Казино Тыбурция",
+		"NameEN": "",
+		"DescriptionRU": "Моя самая масштабная игра на Scratch. Впоследствии я создал ещё несколько её версий, но уже не в Scratch.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/526153919"
+	},
+	{
+		"NameRU": "Guess the code (hard)",
+		"NameEN": "Guess the code (hard)",
+		"DescriptionRU": "Я сделал эту игру чтобы поностальгировать по временам, когда я сделал большую часть своих проектов Scratch.",
+		"DescriptionEN": "",
+		"Link": "https://scratch.mit.edu/projects/1073803757"
+	}
+]

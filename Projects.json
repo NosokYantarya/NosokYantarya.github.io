@@ -1,0 +1,42 @@
+[
+  {
+    "NameRU": "Картинки",
+    "NameEN": "Pictures",
+    "DescriptionRU": "Смотреть картинки, которые были сделаны мной",
+    "DescriptionEN": "View pictures that I have made",
+    "Dir": "Pictures/",
+    "Image": "Heaven.jpg"
+  },
+  {
+    "NameRU": "Игры",
+    "NameEN": "Games",
+    "DescriptionRU": "Мои игры и моды",
+    "DescriptionEN": "My games and mods",
+    "Dir": "Games/",
+    "Image": "Izek.png"
+  },
+  {
+    "NameRU": "Scratch",
+    "NameEN": "Scratch",
+    "DescriptionRU": "Мои древние проекты Scratch",
+    "DescriptionEN": "My ancient Scratch projects",
+    "Dir": "Scratch/",
+    "Image": "Bobux.png"
+  },
+  {
+    "NameRU": "Прочее",
+    "NameEN": "Other",
+    "DescriptionRU": "Прочие небольшие штуки которые я сделал",
+    "DescriptionEN": "Other small things I have made",
+    "Dir": "Other/",
+    "Image": "Sortinator.png"
+  },
+  {
+    "NameRU": "Мои вайфы",
+    "NameEN": "My waifus",
+    "DescriptionRU": "Стена жён (UNDER CONSTRUCTION)",
+    "DescriptionEN": "Wall of wives (UNDER CONSTRUCTION)",
+    "Dir": "Wifes/",
+    "Image": ""
+  }
+]

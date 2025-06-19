@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Scratch</title>
+</head>
+
+<body>
+	<header>
+		<h3>NosokYantarya</h3>
+		<nav>
+			<LangButton id="RU" onclick="Lang('ru')" style="background-color: white; color: black;">RU</LangButton>
+			<LangButton id="EN" onclick="Lang('en')">EN</LangButton>
+			<DropdownContainer>
+				<img src="../burger.svg" />
+				<Dropdown>
+					<a href="../index.html">
+						<ru>О себе</ru>
+						<en>About me</en>
+					</a>
+					<a href="../Projects.html">
+						<ru>Мои поделки</ru>
+						<en>My stuff</en>
+					</a>
+				</Dropdown>
+			</DropdownContainer>
+		</nav>
+	</header>
+	<main>
+		<iframe src="https://scratch.mit.edu/projects/392843568/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+		<h1></h1>
+		<p></p>
+		<a id="a">Посмотреть проект на сайте Scratch</a>
+		<Lists>
+
+		</Lists>
+		<Arrows>
+			<Arrow id="prev" onclick="ChangeList(-1)">
+				<ru>Назад</ru>
+				<en>Previous</en>
+			</Arrow>
+			<Arrow id="next" onclick="ChangeList(1)">
+				<ru>Вперёд</ru>
+				<en>Next</en>
+			</Arrow>
+		</Arrows>
+	</main>
+</body>
+</html>
+
+<style>
+	html[lang="ru"] en {
+		display: none;
+	}
+
+	html[lang="en"] ru {
+		display: none;
+	}
+
+	body {
+		margin: 0;
+		background-color: black;
+		color: white;
+		font-family: Consolas;
+	}
+
+	header {
+		padding: 5px;
+		border: 5px solid white;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		position: sticky;
+		top: 0;
+		background-color: black;
+	}
+
+	nav {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 5px;
+	}
+
+	LangButton {
+		padding: 5px;
+		border: 5px solid white;
+		border-radius: 30px;
+	}
+
+	DropdownContainer {
+		position: relative;
+	}
+
+	Dropdown {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 100%;
+		right: 0%;
+		z-index: 9999;
+		background-color: black;
+		border: 5px solid white;
+		width: 100px;
+	}
+
+		Dropdown a {
+			color: white;
+			text-decoration: none;
+			padding: 5px;
+		}
+
+	DropdownContainer:hover Dropdown {
+		display: flex;
+	}
+
+	main {
+		padding: 10px;
+		margin: auto;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		max-width: 1000px;
+
+		border: 5px solid white;
+		border-radius: 30px;
+		
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+	}
+	@media(max-width: 1000px) {
+		main {
+			margin: 20px;
+		}
+	}
+
+	iframe {
+		border-radius: 30px;
+
+		max-width: 100%;
+	}
+
+	Lists {
+		width: 100%;
+	}
+
+	List {
+		display: flex;
+		flex-direction: column;
+
+		border: 5px solid white;
+		border-radius: 30px;
+		overflow: hidden;
+	}
+	ListElement {
+		padding: 10px;
+
+		text-align: center;
+		font-weight: bold;
+
+		background-color: black;
+
+		transition: background-color 0.5s ease;
+	}
+        ListElement:hover {
+            background-color: white;
+			color: black;
+        }
+
+	Arrows {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+
+		margin: 10px;
+	}
+	Arrow {
+		padding: 5px;
+
+		border: 5px solid white;
+		border-radius: 30px;
+	}
+</style>
+
+<script>
+	var Projects = []
+	var CurrentList = 0;
+	const Amount = 5;
+	fetch("Projects.json")
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(projects => {
+			Projects = projects;
+			CreateButtons();
+			ChangeList(0);
+		})
+		.catch(error => {
+			console.error('There was a problem with the fetch operation:', error);
+		});
+
+	function CreateButtons() {
+		let i = 0;
+		while (i < Projects.length) {
+			let NewList = document.createElement("List");
+			NewList.style.display = "none";
+			let CurrentI = i;
+			while (i < CurrentI + Amount && i < Projects.length) {
+				let NewElement = document.createElement("ListElement");
+				NewElement.innerHTML = "<ru>" + Projects[i].NameRU + "</ru><en>" + Projects[i].NameEN + "</en>";
+                NewElement.onclick = ((index) => () => ChangeProject(index))(i);
+				NewList.appendChild(NewElement);
+				i++;
+			}
+			document.querySelector("Lists").appendChild(NewList);
+		}
+	}
+	function ChangeList(Num) {
+		let Lists = document.querySelector("Lists").children;
+		for (let i = 0; i < Lists.length; i++) {
+			if (i == CurrentList + Num) {
+				Lists[i].style = "";
+			}
+			else {
+                Lists[i].style.display = "none";
+			}
+		};
+
+		let prev = document.getElementById("prev")
+		let next = document.getElementById("next")
+		prev.style.display = "block";
+        next.style.display = "block";
+		if (CurrentList + Num == 0) {
+			prev.style.display = "none";
+		}
+		if (CurrentList + Num == Lists.length - 1) {
+            next.style.display = "none";
+		}
+		CurrentList += Num;
+		console.log(CurrentList);
+	}
+	function ChangeProject(Num) {
+		console.log(Num);
+		let Proj = Projects[Num];
+		document.querySelector("iframe").src = Proj.Link + "/embed";
+		document.querySelector("h1").innerHTML = "<ru>" + Proj.NameRU + "</ru><en>" + Proj.NameEN + "</en>";
+		document.querySelector("p").innerHTML = "<ru>" + Proj.DescriptionRU + "</ru><en>" + Proj.DescriptionEN + "</en>";
+		document.getElementById("a").href = Proj.Link;
+    }
+
+	function Lang(lang) {
+		let RU = document.getElementById("RU");
+		let EN = document.getElementById("EN");
+
+		RU.style = "";
+		EN.style = "";
+
+		if (lang == "ru") {
+			RU.style = "background-color: white; color: black;";
+		}
+		if (lang == "en") {
+			EN.style = "background-color: white; color: black;";
+		}
+
+		document.querySelector("html").lang = lang;
+	}
+</script>

@@ -1,0 +1,134 @@
+﻿<html lang="ru">
+	<head>
+		<title>NosokYantarya</title>
+	</head>
+	
+	<body>
+		<header>
+			<h3>
+				NosokYantarya
+			</h3>
+			<nav>
+				<LangButton id="RU" onclick="Lang('ru')" style="background-color: white; color: black;">RU</LangButton>
+				<LangButton id="EN" onclick="Lang('en')">EN</LangButton>
+				<DropdownContainer>
+					<img src="burger.svg" />
+					<Dropdown>
+						<a href="index.html">
+							<ru>О себе</ru>
+							<en>About me</en>
+						</a>
+						<a href="Projects.html">
+							<ru>Мои поделки</ru>
+							<en>My stuff</en>
+						</a>
+					</Dropdown>
+				</DropdownContainer>
+			</nav>
+		</header>
+
+		<div class="About">
+			<h2>Обо мне</h2>
+			<p>
+				This page is not finished yet
+			</p>
+			<h3>Контакты</h3>
+			<dl>
+				<dt><img src="gmail.svg" width="15" height="15"> Почта</dt>
+				<dd>nosokyantarya@gmail.com</dd>
+				<dd>nazaromonovich@gmail.com</dd>
+				<dt><img src="telegram.svg" width="15" height="15"> Telegram</dt>
+				<dd>@Nosokyantarya</dd>
+				<dt><img src="discord.svg" width="15" height="15"> Discord</dt>
+				<dd>@iaric228</dd>
+			</dl>
+			<font size="1"><a href="https://icons8.com">Иконки от Icons8</a></font>
+		</div>
+	</body>
+</html>
+
+<style>
+    html[lang="ru"] en {
+        display: none;
+    }
+
+    html[lang="en"] ru {
+        display: none;
+    }
+
+    body {
+        margin: 0;
+        background-color: black;
+        color: white;
+        font-family: Consolas;
+    }
+
+    header {
+        padding: 5px;
+        border: 5px solid white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background-color: black;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+    LangButton {
+        padding: 5px;
+        border: 5px solid white;
+        border-radius: 30px;
+    }
+
+    DropdownContainer {
+        position: relative;
+    }
+
+    Dropdown {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0%;
+        z-index: 9999;
+        background-color: black;
+        border: 5px solid white;
+        width: 100px;
+    }
+
+        Dropdown a {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+    DropdownContainer:hover Dropdown {
+        display: flex;
+    }
+</style>
+
+<script>
+    function Lang(lang) {
+        let RU = document.getElementById("RU");
+        let EN = document.getElementById("EN");
+
+        RU.style = "";
+        EN.style = "";
+
+        if (lang == "ru") {
+            RU.style = "background-color: white; color: black;";
+        }
+        if (lang == "en") {
+            EN.style = "background-color: white; color: black;";
+        }
+
+        document.querySelector("html").lang = lang;
+    }
+</script>

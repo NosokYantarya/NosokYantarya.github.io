@@ -1,0 +1,190 @@
+<html lang="ru">
+	<head>
+		<title>Генератор лабиринтов</title>
+	</head>
+	<body>
+		<header>
+			<h3>NosokYantarya</h3>
+			<nav>
+				<LangButton id="RU" onclick="Lang('ru')" style="background-color: white; color: black;">RU</LangButton>
+				<LangButton id="EN" onclick="Lang('en')">EN</LangButton>
+				<DropdownContainer>
+					<img src="../../burger.svg" />
+					<Dropdown>
+						<a href="../../index.html">
+							<ru>О себе</ru>
+							<en>About me</en>
+						</a>
+						<a href="../../Projects.html">
+							<ru>Мои поделки</ru>
+							<en>My stuff</en>
+						</a>
+					</Dropdown>
+				</DropdownContainer>
+			</nav>
+		</header>
+
+		<main>
+			<h1><ru>Генератор лабиринтов</ru><en>Maze generator</en></h1>
+			<a class="Download" href="Maze.zip">
+				<h1>
+					<ru>
+						Скачать
+					</ru>
+					<en>
+						Download
+					</en>
+				</h1>
+				<h3>
+					3 KB
+				</h3>
+			</a>
+			<p>
+				<ru>
+					Простая программа на C#, которая генерирует случайные лабиринты, составленные из символов рамки, путём заполнения поля случайными путями. Больше возможностей будет добавлено в будущем.
+				</ru>
+				<en>
+					A simple C# program that generates random mazes made of frame symbols by filling a field with random paths. More features will be added in the future.
+				</en>
+			</p>
+			<img src="Maze.png"/>
+		</main>
+	</body>
+</html>
+
+<style>
+	html[lang="ru"] en {
+		display: none;
+	}
+
+	html[lang="en"] ru {
+		display: none;
+	}
+
+	body {
+		margin: 0;
+		background-color: black;
+		color: white;
+		font-family: Consolas;
+	}
+
+    header {
+        padding: 5px;
+        border: 5px solid white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background-color: black;
+    }
+
+	nav {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 5px;
+	}
+
+	LangButton {
+		padding: 5px;
+		border: 5px solid white;
+		border-radius: 30px;
+	}
+
+	DropdownContainer {
+		position: relative;
+	}
+
+	Dropdown {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 100%;
+		right: 0%;
+		z-index: 9999;
+		background-color: black;
+		border: 5px solid white;
+		width: 100px;
+	}
+
+	Dropdown a {
+		color: white;
+		text-decoration: none;
+		padding: 5px;
+	}
+
+	DropdownContainer:hover Dropdown {
+		display: flex;
+	}
+
+	main {
+		margin: 20px;
+		padding: 10px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		border: 5px solid white;
+		border-radius: 30px;
+	}
+	.Download {
+		color: white;
+		text-decoration: none;
+
+		border: 5px solid white;
+		border-radius: 30px;
+
+		padding: 10px;
+		margin: 10px;
+
+		text-align: center;
+
+		transition: background-color 0.5s ease;
+	}
+	.Download:hover {
+		background-color: white;
+		color: black;
+	}
+
+	PicContainer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+	main img {
+		max-width: 100%;
+		margin: 5px;
+
+		border-radius: 30px;
+	}
+	hr {
+		width: 100%;
+	}
+    p {
+        text-align: center;
+    }
+
+</style>
+
+<script>
+	function Lang(lang) {
+		let RU = document.getElementById("RU");
+		let EN = document.getElementById("EN");
+
+		RU.style = "";
+		EN.style = "";
+
+		if (lang == "ru") {
+			RU.style = "background-color: white; color: black;";
+		}
+		if (lang == "en") {
+			EN.style = "background-color: white; color: black;";
+		}
+
+		document.querySelector("html").lang = lang;
+	}
+</script>

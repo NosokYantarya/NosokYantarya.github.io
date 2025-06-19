@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<InputField>
+			<textarea></textarea>
+			<h2>Таблица</h2>
+			<multibutton>
+				<mb_inside id="TableButton1" onclick="ChangeTables(false)">
+					Прозрачная
+				</mb_inside>
+				<mb_inside id="TableButton2" onclick="ChangeTables(true)">
+					С контуром
+				</mb_inside>
+			</multibutton>
+			<button onclick="ConvertToHTML()"><b>Конвертировать</b></button>
+		</InputField>
+		<output>
+
+		</output>
+	</body>
+</html>
+
+<style>
+	body {
+		color: white;
+		font-family: Consolas;
+		background-color: black;
+	}
+
+	InputField {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		border: 3px solid white;
+		border-radius: 30px;
+		overflow: hidden;
+
+		padding: 20px;
+	}
+	button {
+		padding: 20px;
+		margin: 20px;
+
+		border: 3px solid white;
+		border-radius: 30px;
+
+		color: white;
+		background-color: black;
+		transition: background-color 0.5s ease;
+	}
+	button:hover {
+		background-color: white;
+		color: black;
+	}
+	multibutton {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+
+		border: 3px solid white;
+		border-radius: 30px;
+		overflow: hidden;
+
+		padding: 0px;
+		height: 30px;
+
+		text-align: center;
+	}
+	mb_inside {
+		text-align: center;
+
+		display: flex;
+		flex: 1;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.XMLtag {
+		border: 3px solid white;
+		border-radius: 30px;
+
+		padding: 10px;
+		margin: 10px;
+
+		display: flex;
+		flex-direction: column;
+	}
+	table {
+		border-collapse: collapse;
+		margin: 10px;
+	}
+	td {
+		border: 3px solid white;
+	}
+</style>
+
+<script>
+	function ChangeTables(what) {
+		let Button1 = document.getElementById("TableButton1")
+		let Button2 = document.getElementById("TableButton2")
+		Button1.style = "";
+		Button2.style = "";
+		document.getElementById("TableButton2").style = "";
+		if (!what) { Button1.style = "background-color: white; color: black;" }
+		if (what) { Button2.style = "background-color: white; color: black;" }
+		let Style = document.styleSheets[0];
+        console.log(Style)
+		for (var i = 0; i < Style.cssRules.length; i++) {
+			console.log("for")
+            console.log(Style.cssRules[i].selectorText)
+            if (Style.cssRules[i].selectorText == "td") {
+				if (what) {
+                    Style.cssRules[i].style.border = "3px solid white";
+					console.log("ChangeTrue")
+				}
+				else {
+                    Style.cssRules[i].style.border = "none";
+				}
+				break;
+			}
+		}
+	}
+
+
+
+	function ConvertToHTML() {
+		let XML = document.querySelector("textarea").value;
+		XML = CloseTags(XML);
+		document.querySelector("output").innerHTML = XML;
+		EditXML(document.querySelector("output"));
+	}
+
+	function EditXML(Tag) {
+		
+		if (Tag.className === "XML_TABLE") return;
+
+		if (!(Tag.className === "XMLtag" || Tag.tagName === "OUTPUT")) {
+			const fragment = document.createDocumentFragment();
+
+			let TagTitle = document.createElement("h2");
+			TagTitle.className = "XML_TABLE";
+			TagTitle.innerHTML = Tag.tagName;
+			fragment.appendChild(TagTitle);
+
+			let EntryTable = document.createElement("table");
+			const entries = Tag.attributes;
+			for (let entry of entries) {
+				let TR = document.createElement("tr");
+				TR.className = "XML_TABLE";
+				let TD1 = document.createElement("td");
+				TD1.className = "XML_TABLE";
+				TD1.innerHTML = entry.name;
+				let TD2 = document.createElement("td");
+				TD2.className = "XML_TABLE";
+				TD2.innerHTML = entry.value;
+
+				TR.appendChild(TD1);
+				TR.appendChild(TD2);
+				EntryTable.appendChild(TR);
+			}
+
+			EntryTable.className = "XML_TABLE";
+			fragment.appendChild(EntryTable);
+			Tag.insertBefore(fragment, Tag.firstChild);
+			Tag.className = "XMLtag";
+		}
+
+		for (let child of Tag.children) {
+			EditXML(child);
+		}
+	}
+
+	function CloseTags(string) {
+		let CurrentTag = "";
+		for (let i = 0; i < string.length; i++) {
+			if (string[i] == "<" && string[i+1] != "/") {
+				i++;
+				CurrentTag = "";
+				while (string[i] != " ") {
+					CurrentTag += string[i];
+					i++;
+				}
+			}
+			if (string[i] == "/" && string[i+1] == ">") {
+				i += 2;
+				string = string.slice(0, i) + "</" + CurrentTag + ">" + string.slice(i);
+				i += ("</" + CurrentTag + ">").length;
+			}
+		}
+		return string;
+	}
+</script>
