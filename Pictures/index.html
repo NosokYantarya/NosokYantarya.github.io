@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Pictures</title>
+</head>
+<body>
+	<header>
+		<h3>
+			NosokYantarya
+		</h3>
+		<nav>
+			<LangButton id="RU" onclick="Lang('ru')" style="background-color: white; color: black;">RU</LangButton>
+			<LangButton id="EN" onclick="Lang('en')">EN</LangButton>
+			<DropdownContainer>
+				<img src="../burger.svg" />
+				<Dropdown>
+					<a href="../index.html">
+						<ru>О себе</ru>
+						<en>About me</en>
+					</a>
+					<a href="../Projects.html">
+						<ru>Мои поделки</ru>
+						<en>My stuff</en>
+					</a>
+				</Dropdown>
+			</DropdownContainer>
+		</nav>
+	</header>
+
+	<BigContainer>
+		<img src="" class="BigPic" id="BigPic" onclick="HideBigPic()">
+	</BigContainer>
+
+	<main>
+		<Buttons>
+
+		</Buttons>
+		<Pics>
+
+		</Pics>
+	</main>
+</body>
+</html>
+
+<style>
+	html[lang="ru"] en {
+		display: none;
+	}
+
+	html[lang="en"] ru {
+		display: none;
+	}
+
+	body {
+		margin: 0;
+		background-color: black;
+		color: white;
+		font-family: Consolas;
+	}
+
+    header {
+        padding: 5px;
+        border: 5px solid white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background-color: black;
+    }
+
+	nav {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 5px;
+	}
+
+	LangButton {
+		padding: 5px;
+		border: 5px solid white;
+		border-radius: 30px;
+	}
+
+	DropdownContainer {
+		position: relative;
+	}
+
+	Dropdown {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 100%;
+		right: 0%;
+		z-index: 9999;
+		background-color: black;
+		border: 5px solid white;
+		width: 100px;
+	}
+
+	Dropdown a {
+		color: white;
+		text-decoration: none;
+		padding: 5px;
+	}
+
+	DropdownContainer:hover Dropdown {
+		display: flex;
+	}
+
+	BigContainer {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		padding-top: 100px;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.9);
+	}
+
+	BigContainer img {
+		margin: auto;
+		display: block;
+		width: 80%;
+		height: auto;
+		max-width: 1000px;
+		border-radius: 0px;
+	}
+
+	main img {
+		height: 100px;
+		width: auto;
+		max-width: 100%;
+
+		border-radius: 10px;
+
+		margin: 3px;
+	}
+
+	main {
+		margin: 10px;
+	}
+	button {
+		color: white;
+		background-color: black;
+
+		border: 5px solid white;
+		border-radius: 30px;
+
+		padding: 10px;
+		margin: 10px;
+	}
+
+	PicContainer {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+
+	img[src="Pictures/Memes/Heaven.jpg"] {
+		border: 5px solid gold;
+	}
+</style>
+
+<script>
+	fetch('Pictures.json')
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Ответ чё-то не ок');
+			}
+			return response.json();
+		})
+		.then(data => {
+			console.log(data);
+			DisplayPics(data);
+			ChangeTab(0);
+		})
+		.catch(error => {
+			console.error('Ошибка: ', error);
+		});
+	
+
+	function BigPic(Name) {
+		const CBig = document.querySelector("BigContainer");
+		const PBig = document.getElementById("BigPic");
+		PBig.src = Name;
+		CBig.style.display = "block";
+	}
+	function HideBigPic() {
+		const CBig = document.querySelector("BigContainer");
+		CBig.style.display = "none";
+	}
+
+	async function DisplayPics(Pics) {
+		const ButtonContainer = document.querySelector("Buttons");
+		const PicContainer = document.querySelector("Pics");
+
+		Pics.forEach(function(item, i) {
+			let NewButton = document.createElement("button");
+			NewButton.innerHTML = "<ru>" + item.NameRU + "</ru><en>" + item.NameEN + "</en>";
+			NewButton.onclick = () => ChangeTab(i);
+			ButtonContainer.appendChild(NewButton);
+
+			let NewDiv = document.createElement("PicContainer");
+			item.Pictures.forEach(name => {
+				let NewPic = document.createElement("img");
+				NewPic.src = "Pictures/" + item.Dir + "/" + name;
+				NewPic.onclick = () => BigPic("Pictures/" + item.Dir + "/" + name);
+				NewDiv.appendChild(NewPic);
+			})
+			PicContainer.appendChild(NewDiv);
+		})
+	}
+	function ChangeTab(number) {
+		const ButtonContainer = document.querySelector("Buttons");
+		const PicContainer = document.querySelector("Pics");
+
+		for (let i = 0; i < PicContainer.childElementCount; i++) {
+			
+			if (i != number) {
+				ButtonContainer.children[i].style = "";
+				PicContainer.children[i].style = "display: none;";
+			}
+			else {
+				ButtonContainer.children[i].style = "color: black; background-color: white;";
+				PicContainer.children[i].style = "display: flex;";
+			}
+		}
+	}
+
+    function Lang(lang) {
+        let RU = document.getElementById("RU");
+        let EN = document.getElementById("EN");
+
+        RU.style = "";
+        EN.style = "";
+
+        if (lang == "ru") {
+            RU.style = "background-color: white; color: black;";
+        }
+        if (lang == "en") {
+            EN.style = "background-color: white; color: black;";
+        }
+
+        document.querySelector("html").lang = lang;
+    }
+</script>

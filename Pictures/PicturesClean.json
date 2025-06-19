@@ -1,0 +1,37 @@
+[
+	{
+		"NameRU": "Мемы", 
+		"NameEN": "Memes", 
+		"Dir": "Memes"
+	},
+	{
+		"NameRU": "Картинки со стрелочками", 
+		"NameEN": "Pictures with arrows", 
+		"Dir": "Point"
+	},
+	{
+		"NameRU": "Скриншоты", 
+		"NameEN": "Screenshots", 
+		"Dir": "Screenshots"
+	},
+	{
+		"NameRU": "Комментарии", 
+		"NameEN": "Comments", 
+		"Dir": "Comments"
+	},
+	{
+		"NameRU": "c.ai", 
+		"NameEN": "c.ai", 
+		"Dir": "Cai"
+	},
+	{
+		"NameRU": "Рисунки", 
+		"NameEN": "Drawings", 
+		"Dir": "Drawings"
+	},
+	{
+		"NameRU": "Фото", 
+		"NameEN": "Photos", 
+		"Dir": "Photos"
+	}
+]
