@@ -15,11 +15,11 @@
 				<img src="../burger.svg" />
 				<Dropdown>
 					<a href="../index.html">
-						<ru>О себе</ru>
+						<ru>Рћ СЃРµР±Рµ</ru>
 						<en>About me</en>
 					</a>
 					<a href="../Projects.html">
-						<ru>Мои поделки</ru>
+						<ru>РњРѕРё РїРѕРґРµР»РєРё</ru>
 						<en>My stuff</en>
 					</a>
 				</Dropdown>
@@ -171,7 +171,7 @@
 	fetch('Pictures.json')
 		.then(response => {
 			if (!response.ok) {
-				throw new Error('Ответ чё-то не ок');
+				throw new Error('РћС‚РІРµС‚ С‡С‘-С‚Рѕ РЅРµ РѕРє');
 			}
 			return response.json();
 		})
@@ -181,7 +181,7 @@
 			ChangeTab(0);
 		})
 		.catch(error => {
-			console.error('Ошибка: ', error);
+			console.error('РћС€РёР±РєР°: ', error);
 		});
 	
 
