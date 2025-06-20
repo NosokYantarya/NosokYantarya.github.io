@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Wives</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../Lang.css" />
+	<link rel="stylesheet" href="../Header.css" />
+</head>
+	
+<body>
+	<header>
+		<h3>
+			NosokYantarya
+		</h3>
+		<nav>
+			<LangButton id="RU" onclick="Lang('ru')" style="background-color: white; color: black;">RU</LangButton>
+			<LangButton id="EN" onclick="Lang('en')">EN</LangButton>
+			<DropdownContainer>
+				<img src="../burger.svg" />
+				<Dropdown>
+					<a href="../index.html">
+						<ru>О себе</ru>
+						<en>About me</en>
+					</a>
+					<a href="../Projects.html">
+						<ru>Мои поделки</ru>
+						<en>My stuff</en>
+					</a>
+				</Dropdown>
+			</DropdownContainer>
+		</nav>
+	</header>
+
+	<main>
+		<Card>
+			<img src="HatsuneMiku.png" />
+			<h2>
+				<ru>Хацунэ Мику</ru>
+				<en>Hatsune Miku</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="KasaneTeto.png" />
+			<h2>
+				<ru>Касанэ Тэто</ru>
+				<en>Kasane Teto</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="TomokoKuroki.png" />
+			<h2>
+				<ru>Томоко Куроки</ru>
+				<en>Tomoko Kuroki</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="AyumuKasuga.png" />
+			<h2>
+				<ru>Аюму Касуга</ru>
+				<en>Ayumu Kasuga</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="MadokaKaname.png" />
+			<h2>
+				<ru>Мадока Канамэ</ru>
+				<en>Madoka Kaname</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="Sayori.png" />
+			<h2>
+				<ru>Саёри</ru>
+				<en>Sayori</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="Kumatora.png" />
+			<h2>
+				<ru>Куматора</ru>
+				<en>Kumatora</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="NoelleHoliday.png" />
+			<h2>
+				<ru>Ноэль Холидэй</ru>
+				<en>Noelle Holiday</en>
+			</h2>
+		</Card>
+		<Card>
+			<img src="Tandi.png" />
+			<h2>
+				<ru>Танди</ru>
+				<en>Tandi</en>
+			</h2>
+		</Card>
+	</main>
+
+	<script src="../Lang.js"></script>
+</body>
+</html>
+
+<style>
+	body {
+		display: flex;
+		flex-direction: column; 
+		justify-content: center;
+	}
+    main {
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    Card {
+        border: 5px solid white;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: start;
+        padding: 10px;
+        margin: 10px;
+        width: 300px;
+        text-align: center;
+    }
+	Card img {
+		width: 300px;
+		height: 300px;
+		border-radius: 20px;
+	}
+</style>
