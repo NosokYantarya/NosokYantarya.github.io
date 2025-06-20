@@ -1,4 +1,4 @@
-fetch("Projects.json")
+п»їfetch("Projects.json")
 	.then(response => {
 		if (!response.ok) {
 			throw new Error('Network response was not ok');
@@ -35,7 +35,7 @@ function CreateCards(Data) {
 
 		const NewLink = document.createElement("a");
 		NewLink.href = item.Dir;
-		NewLink.innerHTML = "<b><ru>Подробнее</ru><en>Read more</en></b>";
+		NewLink.innerHTML = "<b><ru>РџРѕРґСЂРѕР±РЅРµРµ</ru><en>Read more</en></b>";
 
 		const NewInfo = document.createElement("Info");
 		NewInfo.appendChild(NewTitle);
