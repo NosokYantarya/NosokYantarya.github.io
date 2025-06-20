@@ -1,0 +1,7 @@
+html[lang="ru"] en {
+    display: none;
+}
+
+html[lang="en"] ru {
+    display: none;
+}

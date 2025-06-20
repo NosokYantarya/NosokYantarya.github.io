@@ -1,0 +1,56 @@
+body {
+	margin: 0;
+	background-color: black;
+	color: white;
+	font-family: Consolas;
+}
+
+header {
+	padding: 5px;
+	border: 5px solid white;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	position: sticky;
+	top: 0;
+	background-color: black;
+}
+
+nav {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 5px;
+}
+
+LangButton {
+	padding: 5px;
+	border: 5px solid white;
+	border-radius: 30px;
+}
+
+DropdownContainer {
+	position: relative;
+}
+
+Dropdown {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	top: 100%;
+	right: 0%;
+	z-index: 9999;
+	background-color: black;
+	border: 5px solid white;
+	width: 100px;
+}
+
+Dropdown a {
+	color: white;
+	text-decoration: none;
+	padding: 5px;
+}
+
+DropdownContainer:hover Dropdown {
+	display: flex;
+}
