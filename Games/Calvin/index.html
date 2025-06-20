@@ -1,6 +1,10 @@
 <html lang="ru">
 <head>
 	<title>Bible of Calvin</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../../Lang.css" />
+	<link rel="stylesheet" href="../../Header.css" />
+	<link rel="stylesheet" href="../../RegularArticle.css" />
 </head>
 <body>
 	<header>
@@ -281,119 +285,6 @@
 			</ol>
 		</Changelog>
 	</main>
+	<script src="../../Lang.js"></script>
 </body>
 </html>
-
-<style>
-	html[lang="ru"] en {
-		display: none;
-	}
-
-	html[lang="en"] ru {
-		display: none;
-	}
-
-	body {
-		margin: 0;
-		background-color: black;
-		color: white;
-		font-family: Consolas;
-	}
-
-	header {
-		padding: 5px;
-		border: 5px solid white;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		position: sticky;
-		top: 0;
-		background-color: black;
-	}
-
-	nav {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		gap: 5px;
-	}
-
-	LangButton {
-		padding: 5px;
-		border: 5px solid white;
-		border-radius: 30px;
-	}
-
-	DropdownContainer {
-		position: relative;
-	}
-
-	Dropdown {
-		display: none;
-		flex-direction: column;
-		position: absolute;
-		top: 100%;
-		right: 0%;
-		z-index: 9999;
-		background-color: black;
-		border: 5px solid white;
-		width: 100px;
-	}
-
-		Dropdown a {
-			color: white;
-			text-decoration: none;
-			padding: 5px;
-		}
-
-	DropdownContainer:hover Dropdown {
-		display: flex;
-	}
-
-	.Download {
-		color: white;
-		text-decoration: none;
-		border: 5px solid white;
-		border-radius: 30px;
-		background-color: black;
-		padding: 10px;
-		transition: background-color 0.5s ease;
-		text-align: center;
-	}
-	.Download:hover {
-		background-color: white;
-		color: black;
-	}
-    main {
-        margin: 20px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 5px solid white;
-        border-radius: 30px;
-    }
-	Changelog {
-		margin: 20px;
-		padding: 20px;
-	}
-</style>
-
-<script>
-	function Lang(lang) {
-		let RU = document.getElementById("RU");
-		let EN = document.getElementById("EN");
-
-		RU.style = "";
-		EN.style = "";
-
-		if (lang == "ru") {
-			RU.style = "background-color: white; color: black;";
-		}
-		if (lang == "en") {
-			EN.style = "background-color: white; color: black;";
-		}
-
-		document.querySelector("html").lang = lang;
-	}
-</script>
