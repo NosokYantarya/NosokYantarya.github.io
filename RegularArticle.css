@@ -49,4 +49,5 @@ p {
 Downloads {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
