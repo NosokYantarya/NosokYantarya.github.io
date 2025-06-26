@@ -1,5 +1,4 @@
 main {
-    width: 80%;
     margin: auto;
     margin-top: 20px;
     display: flex;
@@ -30,6 +29,7 @@ Info {
 
     Info a {
         color: white;
+        font-weight: bold;
         text-decoration: none;
         border: 5px solid white;
         border-radius: 30px;

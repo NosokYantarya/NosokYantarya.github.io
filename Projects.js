@@ -35,7 +35,7 @@ function CreateCards(Data) {
 
 		const NewLink = document.createElement("a");
 		NewLink.href = item.Dir;
-		NewLink.innerHTML = "<b><ru>Подробнее</ru><en>Read more</en></b>";
+		NewLink.innerHTML = "<ru>Подробнее</ru><en>Read more</en>";
 
 		const NewInfo = document.createElement("Info");
 		NewInfo.appendChild(NewTitle);

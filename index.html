@@ -3,6 +3,7 @@
 <head>
 	<title>NosokYantarya</title>
 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="Lang.css" />
 	<link rel="stylesheet" href="Header.css" />
 </head>
@@ -33,7 +34,7 @@
 
 	<main>
 		<Project>
-			<img src="BEANOS.jpg" width="100%" height="100%" style="border-radius: 20px;"/>
+			<img src="BEANOS.jpg" width="100%" height="100%" style="border-radius: 20px;" />
 		</Project>
 		<Project>
 			<h1>NosokYantarya</h1>
@@ -49,17 +50,64 @@
 			</p>
 		</Project>
 		<Project>
-			<h3>Контакты</h3>
-			<dl width="100%" style="text-align: start;">
-				<dt><img src="gmail.svg" width="15" height="15"> Почта</dt>
-				<dd>nosokyantarya@gmail.com</dd>
-				<dd>nazaromonovich@gmail.com</dd>
-				<dt><img src="telegram.svg" width="15" height="15"> Telegram</dt>
-				<dd>@Nosokyantarya</dd>
-				<dt><img src="discord.svg" width="15" height="15"> Discord</dt>
-				<dd>@iaric228</dd>
-			</dl>
-			<font size="1"><a href="https://icons8.com">Иконки от Icons8</a></font>
+			<h3><ru>Контакты</ru><en>Contacts</en></h3>
+			<Contacts>
+				<ContactContainer>
+					<img src="gmail.svg" width="50" height="50" />
+					<Contact>
+						<p>
+							Nosokyantarya@gmail.com
+						</p>
+						<p>
+							Nazaromonovich@gmail.com
+						</p>
+					</Contact>
+				</ContactContainer>
+				<ContactContainer>
+					<img src="telegram.svg" width="50" height="50" />
+					<Contact>
+						<p>
+							@nosokyantarya
+						</p>
+					</Contact>
+				</ContactContainer>
+				<ContactContainer>
+					<img src="discord.svg" width="50" height="50" />
+					<Contact>
+						<p>
+							@iaric228
+						</p>
+					</Contact>
+				</ContactContainer>
+				<ContactContainer>
+					<img src="Scratch.png" height="30" />
+					<Contact>
+						<p>
+							IAric228
+						</p>
+					</Contact>
+				</ContactContainer>
+			</Contacts>
+		</Project>
+		<Project>
+			<h1>
+				<ru>ПОДПИШИТЕСЬ НА МОЙ ТЕЛЕГРАМ КАНАЛ!!!</ru>
+				<en>JOIN MY TELEGRAM CHANNEL!!!</en>
+			</h1>
+			<p>
+				<ru>
+					Все новости о моей деятельности и обо мне там
+				</ru>
+				<en>All news about my stuff and me is there</en>
+			</p>
+			<a href="https://t.me/NosokYantaryaChannel">
+				<ru>
+					Жать сюда
+				</ru>
+				<en>
+					Click me
+				</en>
+			</a>
 		</Project>
 	</main>
 
@@ -73,27 +121,69 @@
 		flex-direction: column; 
 		justify-content: center;
 	}
-    main {
-        width: 80%;
-        margin: auto;
-        margin-top: 20px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+	main {
+		margin: auto;
+		margin-top: 20px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 
-    Project {
+	Project {
+		border: 5px solid white;
+		border-radius: 30px;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: start;
+		padding: 10px;
+		margin: 10px;
+		width: 320px;
+		text-align: center;
+	}
+
+	Contacts {
+		display: flex;
+		flex-direction: row;
+
+		align-items: center;
+		justify-content: center;
+	}
+	ContactContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+	}
+	Contact {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		padding: 5px;
+		top: 100%;
+		z-index: 9999;
+		background-color: black;
+		border: 5px solid white;
+		border-radius: 10px;
+	}
+	ContactContainer:hover Contact {
+		display: flex;
+	}
+
+    Project a {
+        color: white;
+        text-decoration: none;
         border: 5px solid white;
         border-radius: 30px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: start;
         padding: 10px;
         margin: 10px;
-        width: 320px;
-        text-align: center;
+        transition: background-color 0.5s ease;
     }
+
+        Project a:hover {
+            background-color: white;
+            color: black;
+        }
 </style>
