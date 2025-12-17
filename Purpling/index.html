@@ -1,40 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-</head>
-<body bgcolor="#800080">
+    <head>
+    </head>
+    <body bgcolor="#800080">
     
-</body>
+    </body>
 </html>
 
+<style>
+    .Circle {
+        position: absolute;
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
 <script>
-const R = 128
-const G = 0
-const B = 128
+const R = 128;
+const G = 0;
+const B = 128;
 
-const ChangeRange = 100
+const ChangeRange = 0.5;
+const BasePercent = 50;
 
-const BG = document.querySelector("body")
+const BG = document.querySelector("body");
 
-function UpdateColour(event) {
-    let MouseX = event.clientX
-    let MouseY = event.clientY
-    
-    let ScrWidth = document.documentElement.clientWidth
-    let ScrHeight = document.documentElement.clientHeight
-    
-    let Rpercentage = ((MouseX/ScrWidth)*ChangeRange)+(100-(ChangeRange/2))
-    let Bpercentage = ((MouseY/ScrHeight)*ChangeRange)+(100-(ChangeRange/2))
-    
-    let NewR = Math.min(255, Math.max(Math.trunc(R*Rpercentage/100)))
-    let NewG = G
-    let NewB = Math.min(255, Math.max(Math.trunc(B*Bpercentage/100)))
-    
-    let Hex = "#" + ((NewR<<16)|(NewG<<8)|NewB).toString(16).padStart(6, "0")
-    //BG.innerText = `${Hex} ${Rpercentage} ${Bpercentage}`
-    BG.style.backgroundColor = Hex
+const CirclesStartingWidth = 100;
+const CirclesStartingHeight = 100;
+const CirclesGrowthRate = 1;
+const CircleFadeRate = 1;
+
+var Circles = [];
+
+class Circle {
+    constructor(x, y) {
+        let NewCircle = document.createElement("div");
+        NewCircle.className = "Circle";
+        NewCircle.style.left = `${event.clientX - CirclesStartingHeight / 2}px`;
+        NewCircle.style.top = `${event.clientY - CirclesStartingWidth / 2}px`;
+        BG.appendChild(NewCircle);
+        
+        this.Element = NewCircle;
+        this.Opacity = 100;
+    }
+
+    ChangeColour(hex) {
+        this.Element.style.backgroundColor = hex
+    }
 }
 
-document.addEventListener("mousemove", UpdateColour)
-document.addEventListener("touchmove", UpdateColour)
+function OnClick(event) {
+    /*
+    NewCircle = document.createElement("div");
+    NewCircle.className = "Circle";
+    NewCircle.style.left = `${event.clientX - CirclesStartingHeight / 2}px`;
+    NewCircle.style.top = `${event.clientY - CirclesStartingWidth / 2}px`;
+    BG.appendChild(NewCircle);
+    */
+   Circles.push(new Circle(event.clientX, event.clientY))
+}
+
+function CalculateColour(x, y, reverse = false) {
+    let ScrWidth = document.documentElement.clientWidth;
+    let ScrHeight = document.documentElement.clientHeight;
+
+    let ROffset = (x / (ScrWidth / 2) - 1.0) * ChangeRange;
+    let BOffset = (y / (ScrHeight / 2) - 1.0) * ChangeRange;
+
+    let RPercentage = 1 + (ROffset * (reverse? -1 : 1));
+    let BPercentage = 1 + (BOffset * (reverse? -1 : 1));
+    //BG.innerText = `X and Y: ${x} ${y} \nOffset: ${ROffset} ${BOffset} \nPercents: ${RPercentage} ${BPercentage}`;
+    let NewR = Math.min(255, Math.max(Math.trunc(R * RPercentage)));
+    let NewG = G;
+    let NewB = Math.min(255, Math.max(Math.trunc(B * BPercentage)));
+
+    let Hex = "#" + ((NewR << 16) | (NewG << 8) | NewB).toString(16).padStart(6, "0");
+    return Hex;
+}
+
+function OnMouseMove(event) {
+    let MouseX = event.clientX;
+    let MouseY = event.clientY;
+    
+    BGColour = CalculateColour(MouseX, MouseY);
+    //BG.innerText = BGColour
+    BG.style.backgroundColor = BGColour;
+
+    CirclesColour = CalculateColour(MouseX, MouseY, true);
+    Circles.forEach(element => {
+        element.ChangeColour(CirclesColour)
+    });
+}
+
+document.addEventListener("click", OnClick);
+document.addEventListener("mousemove", OnMouseMove);
+document.addEventListener("touchmove", OnMouseMove);
 </script>
