@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body bgcolor="#800080">
+    
+</body>
+</html>
+
+<script>
+const R = 128
+const G = 0
+const B = 128
+
+const ChangeRange = 100
+
+const BG = document.querySelector("body")
+
+function UpdateColour(event) {
+    let MouseX = event.clientX
+    let MouseY = event.clientY
+    
+    let ScrWidth = document.documentElement.clientWidth
+    let ScrHeight = document.documentElement.clientHeight
+    
+    let Rpercentage = ((MouseX/ScrWidth)*ChangeRange)+(100-(ChangeRange/2))
+    let Bpercentage = ((MouseY/ScrHeight)*ChangeRange)+(100-(ChangeRange/2))
+    
+    let NewR = Math.trunc(R*Rpercentage/100)
+    let NewG = G
+    let NewB = Math.trunc(B*Bpercentage/100)
+    
+    let Hex = "#" + ((NewR<<16)|(NewG<<0)|NewB).toString(16).padStart(6, "0")
+    //BG.innerText = `${Hex} ${Rpercentage} ${Bpercentage}`
+    BG.style.backgroundColor = Hex
+}
+
+document.addEventListener("mousemove", UpdateColour)
+document.addEventListener("touchmove", UpdareColour)
+</script>

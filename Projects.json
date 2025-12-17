@@ -38,5 +38,13 @@
     "DescriptionEN": "Wall of wives",
     "Dir": "Wifes/",
     "Image": "HatsuneMiku.png"
+  },
+  {
+    "NameRU": "Пурпурить",
+    "NameEN": "Purpling",
+    "DescriptionRU": "Пурпурить",
+    "DescriptionEN": "Purpling",
+    "Dir": "Purpling/",
+    "Image": "Purple.png"
   }
 ]
