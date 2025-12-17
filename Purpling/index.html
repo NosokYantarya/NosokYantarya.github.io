@@ -26,15 +26,15 @@ function UpdateColour(event) {
     let Rpercentage = ((MouseX/ScrWidth)*ChangeRange)+(100-(ChangeRange/2))
     let Bpercentage = ((MouseY/ScrHeight)*ChangeRange)+(100-(ChangeRange/2))
     
-    let NewR = Math.trunc(R*Rpercentage/100)
+    let NewR = Math.min(255, Math.max(Math.trunc(R*Rpercentage/100)))
     let NewG = G
-    let NewB = Math.trunc(B*Bpercentage/100)
+    let NewB = Math.min(255, Math.max(Math.trunc(B*Bpercentage/100)))
     
-    let Hex = "#" + ((NewR<<16)|(NewG<<0)|NewB).toString(16).padStart(6, "0")
+    let Hex = "#" + ((NewR<<16)|(NewG<<8)|NewB).toString(16).padStart(6, "0")
     //BG.innerText = `${Hex} ${Rpercentage} ${Bpercentage}`
     BG.style.backgroundColor = Hex
 }
 
 document.addEventListener("mousemove", UpdateColour)
-document.addEventListener("touchmove", UpdareColour)
+document.addEventListener("touchmove", UpdateColour)
 </script>
