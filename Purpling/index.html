@@ -11,8 +11,7 @@
     .Circle {
         position: absolute;
         border-radius: 100%;
-        width: 100px;
-        height: 100px;
+        background-color: white;
     }
 </style>
 
@@ -26,27 +25,84 @@ const BasePercent = 50;
 
 const BG = document.querySelector("body");
 
-const CirclesStartingWidth = 100;
-const CirclesStartingHeight = 100;
-const CirclesGrowthRate = 1;
-const CircleFadeRate = 1;
+const CirclesStartingDiameter = 10;
+const CirclesGrowthRate = 0.1;
+const CircleFadeRate = 0.1;
+const CircleUpdateDelay = 50;
 
 var Circles = [];
 
+function RandomInRange(min, max) {
+    return (Math.random() * (max - min)) + min;
+}
+
 class Circle {
     constructor(x, y) {
+        console.log(`Created circle at ${x} ${y}`);
+        this.Diameter = CirclesStartingDiameter;
+        this.PosX = x
+        this.PosY = y
+        this.Opacity = 100;
+        this.GrowthRate = 0.4
+        //RandomInRange(25,50) / 100;
+        this.FadeRate = -0.1
+        //RandomInRange(1,30) / 100 * -1;
+        this.Finished = false;
+        
         let NewCircle = document.createElement("div");
         NewCircle.className = "Circle";
-        NewCircle.style.left = `${event.clientX - CirclesStartingHeight / 2}px`;
-        NewCircle.style.top = `${event.clientY - CirclesStartingWidth / 2}px`;
         BG.appendChild(NewCircle);
-        
         this.Element = NewCircle;
-        this.Opacity = 100;
+        this.UpdateSize();
+        this.ChangeColour(CalculateColour(x, y, true));
     }
 
     ChangeColour(hex) {
         this.Element.style.backgroundColor = hex
+    }
+    
+    UpdateSize() {
+        this.Element.style.width = `${this.Diameter}px`;
+        this.Element.style.height = `${this.Diameter}px`;
+        this.Element.style.left = `${this.PosX - this.Diameter / 2}px`;
+        this.Element.style.top = `${this.PosY - this.Diameter / 2}px`;
+    }
+    
+    UpdateOpacity() {
+        this.Element.style.opacity = `${this.Opacity}%`;
+    }
+    
+    ChangeSize(value) {
+        this.Diameter += value;
+        this.UpdateSize();
+    }
+    
+    ChangeOpacity(value) {
+        this.Opacity += value;
+        this.UpdateOpacity();
+    }
+    
+    Update(deltaTime) {
+        if(this.Opacity < 0) {
+            this.Finished = true;
+            this.Element.remove()
+            return;
+        }
+        this.ChangeSize(this.GrowthRate * deltaTime);
+        this.ChangeOpacity(this.FadeRate * deltaTime);
+    }
+}
+
+function UpdateCircles() {
+    for(i = 0; i < Circles.length; i++) {
+        if(Circles[i].Finished) {
+            Circles.splice(i, 1);
+            i--;
+            console.log("Deleted circle");
+        }
+        else {
+            Circles[i].Update(CircleUpdateDelay);
+        }
     }
 }
 
@@ -93,7 +149,8 @@ function OnMouseMove(event) {
     });
 }
 
+setInterval(UpdateCircles, 50);
 document.addEventListener("click", OnClick);
 document.addEventListener("mousemove", OnMouseMove);
-document.addEventListener("touchmove", OnMouseMove);
+//document.addEventListener("touchmove", OnMouseMove);
 </script>
